@@ -59,7 +59,13 @@ namespace UserInfo
                 userInfoClass.DeleteFile();
                 Input();
             }
-            else if (userCommand == 5)
+            else if(userCommand==5)
+            {
+                Console.WriteLine(userInfoClass.ReadFile());
+                      Input();
+                
+            }
+            else if (userCommand == 6)
             {
                 System.Environment.Exit(0);
             }

@@ -19,8 +19,6 @@ namespace UserInfo
         public string Address { get; set; }
         public string Phone { get; set; }
         string path = @"D:\Rough Folder\UserInfo\UserInfo\Mytest.txt";
-       // string path1 = @"D:\Rough Folder\UserInfo\UserInfo\bin\debug\net8.0\UserInfoFile.txt";
-
         public void SaveInfo(int id, string name, string address, string phone)
         {
             if (!File.Exists(path))
@@ -49,6 +47,7 @@ namespace UserInfo
                         bw.Write(phone);
                     }
                 }
+                Console.WriteLine("Record is added in existing file");
             }
         }
         public void GetAllInfo()
@@ -70,12 +69,16 @@ namespace UserInfo
         }
         public void EditRecord(int id, string name, string address, string phone)
         {
-           File.AppendAllText(path,"This is something new");
+           File.AppendAllText(path,"This is something new",Encoding.UTF8);
         }
         public void DeleteFile()
         {
             File.Delete(path);
             Console.WriteLine("File Deleted Successfully\n");
+        }
+        public string ReadFile()
+        {
+            return File.ReadAllText(path,Encoding.UTF8);
         }
     }
 }
