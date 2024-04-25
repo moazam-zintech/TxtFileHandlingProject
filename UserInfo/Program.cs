@@ -12,7 +12,7 @@ namespace UserInfo
             //Edit
             //Delete
             Console.WriteLine(".......................User Info..........................\n\n");
-            InputClass inputClass = new InputClass();
+            UserInputs inputClass = new UserInputs();
             inputClass.Input();
 
             /*      userInfoClass.SetId(id);
