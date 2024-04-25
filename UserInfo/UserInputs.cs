@@ -5,12 +5,14 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using UserInfo.Interfaces;
 using UserInfo.Operations;
 namespace UserInfo
 {
     public class UserInputs
     {
         SaveRecord saveRecord = new SaveRecord();
+
         GetRecord getRecord = new GetRecord();
         EditData editData = new EditData();
         ReadFile readFile = new ReadFile();

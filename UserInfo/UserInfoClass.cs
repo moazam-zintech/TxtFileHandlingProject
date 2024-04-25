@@ -19,7 +19,7 @@ namespace UserInfo
         public Int32 Id { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
-        public string path = @"D:\Rough Folder\UserInfo\UserInfo\Mytest.txt";
+       public string path = @"D:\Rough Folder\UserInfo\UserInfo\Mytest.txt";
        
     }
 }

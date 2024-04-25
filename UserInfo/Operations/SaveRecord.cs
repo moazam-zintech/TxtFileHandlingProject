@@ -4,10 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UserInfo.Interfaces;
 
 namespace UserInfo.Operations
 {
-    public class SaveRecord
+    public class SaveRecord: ISaveRecord
     {
         public void SaveInfo(int id, string name, string address, string phone)
         {

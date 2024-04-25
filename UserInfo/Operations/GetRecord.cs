@@ -7,11 +7,13 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using UserInfo.Interfaces;
 
 namespace UserInfo
 {
-    public class GetRecord: UserInfoClass
+    public class GetRecord: UserInfoClass,IGetRecord
     {
+
         public void GetAllInfo()
         {
             if (File.Exists(path) && !(File.ReadAllText(path) == ""))

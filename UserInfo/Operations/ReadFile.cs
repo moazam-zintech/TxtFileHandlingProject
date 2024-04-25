@@ -11,7 +11,7 @@ namespace UserInfo.Operations
     {
         public string ReadFileData()
         {
-            return File.ReadAllText(path, Encoding.UTF8);
+            return File.ReadAllText(@"D:\Rough Folder\UserInfo\UserInfo\Mytest.txt", Encoding.UTF8);
         }
     }
 }
