@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UserInfo.Interfaces
 {
-    internal interface IGetRecord
+    public interface IGetRecord
     {
         public void GetAllInfo();
     }

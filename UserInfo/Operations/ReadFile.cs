@@ -4,10 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UserInfo.Interfaces;
 
 namespace UserInfo.Operations
 {
-    public class ReadFile: UserInfoClass
+    public class ReadFile: IReadFile
     {
         public string ReadFileData()
         {

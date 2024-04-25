@@ -1,7 +1,9 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Numerics;
+using System.Reflection.PortableExecutable;
 using System.Xml.Linq;
+using UserInfo.Interfaces;
 using UserInfo.Operations;
 
 namespace UserInfo.xUnitTests
@@ -13,8 +15,6 @@ namespace UserInfo.xUnitTests
         EditData editData = new EditData();
         ReadFile readFile = new ReadFile();
         DeleteFile deleteFile = new DeleteFile();
-
-        UserInputs inputClass=new UserInputs();
         [Fact]
         public void Test1()
         {
@@ -25,6 +25,7 @@ namespace UserInfo.xUnitTests
             Int32 ID = 123;
             //Act 
             saveRecord.SaveInfo(ID, name, address, phone);
+
             getRecord.GetAllInfo();
             //Assert
             Assert.Equal(name, getRecord.Name);
@@ -33,9 +34,26 @@ namespace UserInfo.xUnitTests
             Assert.Equal(ID, getRecord.Id);
         }
         [Fact]
-        public void Test2()
+        public void ReadFileTest()
         {
+            readFile.ReadFileData();
+        }
+        [Fact]
+        public void DeleteFileTest()
+        {
+            deleteFile.DeleteFileData();
+        }
+        [Fact]
+        public void GetRecordTest() 
+        {
+            getRecord.GetAllInfo();
+        }
 
+        [Fact]
+        public void EditDataTest()
+        {
+            string details = "This test string for EditRecord method";
+            editData.EditRecord(details);
         }
 
     }

@@ -13,7 +13,6 @@ namespace UserInfo
 {
     public class GetRecord: UserInfoClass,IGetRecord
     {
-
         public void GetAllInfo()
         {
             if (File.Exists(path) && !(File.ReadAllText(path) == ""))

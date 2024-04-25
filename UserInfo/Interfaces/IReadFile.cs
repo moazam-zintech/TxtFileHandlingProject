@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UserInfo.Interfaces
 {
-    internal interface IReadFile
+    public interface IReadFile
     {
         public string ReadFileData();
     }

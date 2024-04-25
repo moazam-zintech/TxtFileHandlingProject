@@ -1,76 +1,23 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
+using UserInfo.Interfaces;
+using UserInfo.Operations;
 
 namespace UserInfo
 {
     public class Program
     {
         public static void Main(string[] args)
-        {
-            //Save
-            //Get All(Display all)
-            //Edit
-            //Delete
+        { 
+            SaveRecord savedRecord = new SaveRecord();
+            GetRecord record = new GetRecord();
+           ReadFile readFile = new ReadFile();
+            EditData editData = new EditData();
+            DeleteFile deleteFile = new DeleteFile();
             Console.WriteLine(".......................User Info..........................\n\n");
-            UserInputs inputClass = new UserInputs();
+            //Method Injections
+            UserInputs inputClass = new UserInputs(savedRecord, record, readFile, editData, deleteFile);
             inputClass.Input();
-
-            /*      userInfoClass.SetId(id);
-            userInfoClass.SetName(name);
-            userInfoClass.Saveinfo();
-*/
-            /*  BinaryWriter bw;
-              BinaryReader br;
-              try
-              {
-                  bw = new BinaryWriter(new FileStream("userInfoData", FileMode.Create));
-              }
-              catch (IOException e)
-              {
-                  Console.WriteLine(e.Message,"Can not create file");
-                  return;
-               }
-             try
-              {
-                  bw.Write(id);
-                  bw.Write(name);
-              }
-              catch (Exception e)
-              {
-                  Console.WriteLine(e.Message, "Can not store");
-                  return;
-              }
-              bw.Close();
-              try
-              {
-                  br = new BinaryReader(new FileStream("userInfoData", FileMode.Open));
-              }
-              catch (Exception)
-              {
-                  throw;
-              }
-              string i;
-              try
-              {
-                  id = br.ReadInt32();
-                  i = br.ReadString();
-              }
-              catch (Exception)
-              {
-                  throw;
-              }
-
-              try
-              {
-
-              }
-              catch (Exception)
-              {
-                  throw;
-              }
-
-              string j = name;
-              int i1 = id;*/
         }
     }
 }

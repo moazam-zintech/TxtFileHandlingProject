@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UserInfo.Interfaces
 {
-    internal interface IEditRecord
+    public interface IEditRecord
     {
         public void EditRecord(string details);
     }
