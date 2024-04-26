@@ -5,22 +5,21 @@ namespace UserInfo.Operations
 {
     public class SaveRecord : ISaveRecord
     {
-
-        
-        public void SaveInfo(int id, string name, string address, string phone)
+        public void SaveInfo()
         {
             GlobalPath globalPath = new GlobalPath();
             string path = globalPath.GetPath();
+            UserInfoClass user= new UserInfoClass();
             if (File.Exists(path))
             {
                 using (var stream = File.Open(path, FileMode.OpenOrCreate))
                 {
                     using (var bw = new BinaryWriter(stream, Encoding.UTF8))
                     {
-                        bw.Write(id);
-                        bw.Write(name);
-                        bw.Write(address);
-                        bw.Write(phone);
+                        bw.Write(user.Id);
+                        bw.Write(user.Name);
+                        bw.Write(user.Address);
+                        bw.Write(user.Phone);
                     }
                 }
                 Console.WriteLine("File is created and Record is added:");

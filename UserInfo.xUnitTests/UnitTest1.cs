@@ -1,9 +1,4 @@
 using Moq;
-using System.Net;
-using System.Net.Sockets;
-using System.Numerics;
-using System.Reflection.PortableExecutable;
-using System.Xml.Linq;
 using UserInfo.Interfaces;
 using UserInfo.Operations;
 namespace UserInfo.xUnitTests
@@ -21,7 +16,7 @@ namespace UserInfo.xUnitTests
             var phone = "03458";
             Int32 ID = 123;
             //Act 
-            saveRecord.SaveInfo(ID, name, address, phone);
+            saveRecord.SaveInfo();
 
             readFile.GetAllInfo();
             //Assert
@@ -35,14 +30,14 @@ namespace UserInfo.xUnitTests
         {
             readFile.ReadFileData();
         }
-     
-  
+
+
         [Fact]
         //Mock Test
         public void mockTest()
         {
-            var getRecord=new Mock<IReadFile>();
-            var data=getRecord.Setup(x => x.GetAllInfo());
+            var getRecord = new Mock<IReadFile>();
+            var data = getRecord.Setup(x => x.GetAllInfo());
             Assert.NotNull(data);
         }
     }

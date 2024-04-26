@@ -5,7 +5,7 @@ namespace UserInfo
     {
         private ISaveRecord _saveRecord;
         private IReadFile _readFile;
-  
+        UserInfoClass user = new UserInfoClass();
         public UserInputs(ISaveRecord saveRecord, IReadFile readFile)
         {
             this._saveRecord = saveRecord;
@@ -29,7 +29,10 @@ namespace UserInfo
             {
                 Console.WriteLine("...............................Input...................................");
                 Console.WriteLine("Name:");
-                string name = Console.ReadLine();
+                string name= Console.ReadLine();
+                
+                user.Name = "Naveed";
+
                 Console.WriteLine("ID:");
                 int ID = 0;
                 bool okay = int.TryParse(Console.ReadLine(), out ID);
@@ -38,11 +41,12 @@ namespace UserInfo
                     Console.WriteLine("Please Enter Id in digits");
                     Input();
                 }
+                user.Id = 123;
                 Console.WriteLine("Address");
-                string address = Console.ReadLine();
+                user.Address = "karachi"; //= Console.ReadLine();
                 Console.WriteLine("Phone");
-                string Phone = Console.ReadLine();
-                _saveRecord.SaveInfo(ID, name, address, Phone);
+                user.Phone = "03456666";//= Console.ReadLine();
+                _saveRecord.SaveInfo();
                 Input();
             }
             else if (userCommand == 2)
