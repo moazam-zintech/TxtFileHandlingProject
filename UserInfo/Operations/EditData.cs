@@ -10,9 +10,12 @@ namespace UserInfo.Operations
 {
     public class EditData: IEditRecord
     {
-        string path = @"D:\Rough Folder\UserInfo\UserInfo\Mytest.txt";
+        
+        //string path = @"D:\Rough Folder\UserInfo\UserInfo\Mytest.txt";
         public void EditRecord(string details)
         {
+            GlobalPath globalPath = new GlobalPath();
+            string path = globalPath.GetPath();
             File.AppendAllText(path, details, Encoding.UTF8);
         }
     }

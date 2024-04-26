@@ -12,10 +12,12 @@ namespace UserInfo.Operations
     {
         public void SaveInfo(int id, string name, string address, string phone)
         {
-            string path = @"D:\Rough Folder\UserInfo\UserInfo\Mytest.txt";
+            GlobalPath globalPath = new GlobalPath();
+            string path = globalPath.GetPath();
+           // string path = @"D:\Rough Folder\UserInfo\UserInfo\Mytest.txt";
             if (!File.Exists(path))
             {
-                using (var stream = File.Open(path, FileMode.Create))
+                using (var stream = File.Open(path, FileMode.OpenOrCreate))
                 {
                     using (var bw = new BinaryWriter(stream, Encoding.UTF8))
                     {
@@ -26,20 +28,6 @@ namespace UserInfo.Operations
                     }
                 }
                 Console.WriteLine("File is created and Record is added:");
-            }
-            else
-            {
-                using (var stream = File.Open(path, FileMode.Open))
-                {
-                    using (var bw = new BinaryWriter(stream, Encoding.UTF8))
-                    {
-                        bw.Write(id);
-                        bw.Write(name);
-                        bw.Write(address);
-                        bw.Write(phone);
-                    }
-                }
-                Console.WriteLine("Record is added in existing file");
             }
         }
     }

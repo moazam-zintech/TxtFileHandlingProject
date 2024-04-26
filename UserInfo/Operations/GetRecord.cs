@@ -13,8 +13,11 @@ namespace UserInfo
 {
     public class GetRecord: UserInfoClass,IGetRecord
     {
-        public void GetAllInfo()
+       public void GetAllInfo()
         {
+            GlobalPath globalPath = new GlobalPath();
+            string path = globalPath.GetPath();
+           // string path = @"D:\Rough Folder\UserInfo\UserInfo\Mytest.txt";
             if (File.Exists(path) && !(File.ReadAllText(path) == ""))
             {
                 using (var stream = File.Open(path, FileMode.Open))

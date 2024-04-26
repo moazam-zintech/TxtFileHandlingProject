@@ -12,7 +12,19 @@ namespace UserInfo.Operations
     {
         public string ReadFileData()
         {
-            return File.ReadAllText(@"D:\Rough Folder\UserInfo\UserInfo\Mytest.txt", Encoding.UTF8);
+            
+            GlobalPath globalPath = new GlobalPath();
+            string path = globalPath.GetPath();
+            if(File.Exists(path))
+            {
+                return File.ReadAllText(path, Encoding.UTF8);
+            }
+            else
+            {
+
+                Console.WriteLine("There is no file");
+                return "";
+            }
         }
     }
 }

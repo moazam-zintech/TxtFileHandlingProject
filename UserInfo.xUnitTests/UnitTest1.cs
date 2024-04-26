@@ -1,3 +1,4 @@
+using Moq;
 using System.Net;
 using System.Net.Sockets;
 using System.Numerics;
@@ -5,7 +6,6 @@ using System.Reflection.PortableExecutable;
 using System.Xml.Linq;
 using UserInfo.Interfaces;
 using UserInfo.Operations;
-
 namespace UserInfo.xUnitTests
 {
     public class UnitTest1
@@ -14,7 +14,6 @@ namespace UserInfo.xUnitTests
         GetRecord getRecord = new GetRecord();
         EditData editData = new EditData();
         ReadFile readFile = new ReadFile();
-        DeleteFile deleteFile = new DeleteFile();
         [Fact]
         public void Test1()
         {
@@ -39,22 +38,23 @@ namespace UserInfo.xUnitTests
             readFile.ReadFileData();
         }
         [Fact]
-        public void DeleteFileTest()
-        {
-            deleteFile.DeleteFileData();
-        }
-        [Fact]
         public void GetRecordTest() 
         {
             getRecord.GetAllInfo();
         }
-
         [Fact]
         public void EditDataTest()
         {
             string details = "This test string for EditRecord method";
             editData.EditRecord(details);
         }
-
+        [Fact]
+        //Mock Test
+        public void mockTest()
+        {
+            var getRecord=new Mock<IGetRecord>();
+            var data=getRecord.Setup(x => x.GetAllInfo());
+            Assert.NotNull(data);
+        }
     }
 }

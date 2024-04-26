@@ -2,6 +2,7 @@
 using System.Xml.Linq;
 using UserInfo.Interfaces;
 using UserInfo.Operations;
+using UserInfo.TestClassess;
 
 namespace UserInfo
 {
@@ -9,15 +10,21 @@ namespace UserInfo
     {
         public static void Main(string[] args)
         { 
-            SaveRecord savedRecord = new SaveRecord();
-            GetRecord record = new GetRecord();
-           ReadFile readFile = new ReadFile();
+           ISaveRecord savedRecord = new SaveRecord();
+            IGetRecord record = new GetRecord();
+            IReadFile readFile = new ReadFile();
             EditData editData = new EditData();
-            DeleteFile deleteFile = new DeleteFile();
-            Console.WriteLine(".......................User Info..........................\n\n");
+            /*  IDeleteFile deleteFile = new DeleteFile();*/
+            //Console.WriteLine(".......................User Info..........................\n\n");
             //Method Injections
-            UserInputs inputClass = new UserInputs(savedRecord, record, readFile, editData, deleteFile);
+            UserInputs inputClass = new UserInputs(savedRecord, record, readFile, editData);
             inputClass.Input();
+
+
+            TestClass testClass = new TestClass();
+           // testClass.List1();
+
+
         }
     }
 }
