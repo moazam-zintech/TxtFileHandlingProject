@@ -4,15 +4,13 @@ namespace UserInfo
     public class UserInputs
     {
         private ISaveRecord _saveRecord;
-        private IGetRecord _getRecord;
         private IReadFile _readFile;
-        private IEditRecord _editRecord;
-        public UserInputs(ISaveRecord saveRecord, IGetRecord getRecord, IReadFile readFile, IEditRecord editRecord)
+  
+        public UserInputs(ISaveRecord saveRecord, IReadFile readFile)
         {
             this._saveRecord = saveRecord;
-            this._getRecord = getRecord;
             this._readFile = readFile;
-            this._editRecord = editRecord;
+          
         }
         public void Input()
         {
@@ -50,14 +48,14 @@ namespace UserInfo
             else if (userCommand == 2)
             {
                 Console.WriteLine("...............................Output..................................");
-                _getRecord.GetAllInfo();
+                _readFile.GetAllInfo();
                 Input();
             }
             else if (userCommand == 3)
             {
                 Console.WriteLine("Please write additional details in the file:");
                 string details = Console.ReadLine();
-                _editRecord.EditRecord(details);
+                _saveRecord.EditRecord(details);
                 Input();
             }
             else if (userCommand == 4)

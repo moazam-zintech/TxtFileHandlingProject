@@ -11,8 +11,6 @@ namespace UserInfo.xUnitTests
     public class UnitTest1
     {
         SaveRecord saveRecord = new SaveRecord();
-        GetRecord getRecord = new GetRecord();
-        EditData editData = new EditData();
         ReadFile readFile = new ReadFile();
         [Fact]
         public void Test1()
@@ -25,34 +23,25 @@ namespace UserInfo.xUnitTests
             //Act 
             saveRecord.SaveInfo(ID, name, address, phone);
 
-            getRecord.GetAllInfo();
+            readFile.GetAllInfo();
             //Assert
-            Assert.Equal(name, getRecord.Name);
-            Assert.Equal(address, getRecord.Address);
-            Assert.Equal(phone, getRecord.Phone);
-            Assert.Equal(ID, getRecord.Id);
+            Assert.Equal(name, readFile.Name);
+            Assert.Equal(address, readFile.Address);
+            Assert.Equal(phone, readFile.Phone);
+            Assert.Equal(ID, readFile.Id);
         }
         [Fact]
         public void ReadFileTest()
         {
             readFile.ReadFileData();
         }
-        [Fact]
-        public void GetRecordTest() 
-        {
-            getRecord.GetAllInfo();
-        }
-        [Fact]
-        public void EditDataTest()
-        {
-            string details = "This test string for EditRecord method";
-            editData.EditRecord(details);
-        }
+     
+  
         [Fact]
         //Mock Test
         public void mockTest()
         {
-            var getRecord=new Mock<IGetRecord>();
+            var getRecord=new Mock<IReadFile>();
             var data=getRecord.Setup(x => x.GetAllInfo());
             Assert.NotNull(data);
         }

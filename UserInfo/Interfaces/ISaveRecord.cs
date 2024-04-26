@@ -9,5 +9,7 @@ namespace UserInfo.Interfaces
     public interface ISaveRecord
     {
         public void SaveInfo(int id, string name, string address, string phone);
+        public void EditRecord(string details);
+
     }
 }
