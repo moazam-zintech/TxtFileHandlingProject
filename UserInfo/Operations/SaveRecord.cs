@@ -1,35 +1,61 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Text;
 using UserInfo.Interfaces;
 
 namespace UserInfo.Operations
 {
     public class SaveRecord : ISaveRecord
     {
-        public void SaveInfo()
+        public void SaveInfo(int Id, string Name, string Address, string Phone,string tempFile)
         {
-            GlobalPath globalPath = new GlobalPath();
-            string path = globalPath.GetPath();
-            UserInfoClass user= new UserInfoClass();
-            if (File.Exists(path))
+            using(StreamWriter sw = new StreamWriter(tempFile,true,Encoding.UTF8)) 
             {
-                using (var stream = File.Open(path, FileMode.OpenOrCreate))
-                {
-                    using (var bw = new BinaryWriter(stream, Encoding.UTF8))
-                    {
-                        bw.Write(user.Id);
-                        bw.Write(user.Name);
-                        bw.Write(user.Address);
-                        bw.Write(user.Phone);
-                    }
-                }
-                Console.WriteLine("File is created and Record is added:");
+                sw.WriteLine(Id+","+Name+","+Address + ","+Phone);
             }
         }
-        public void EditRecord(string details)
+        public void EditRecord(int search,string editName,string editAddress,string editPhone)
         {
-            GlobalPath globalPath = new GlobalPath();
-            string path = globalPath.GetPath();
-            File.AppendAllText(path, details, Encoding.UTF8);
+            string path = "file.txt";
+            string tempFile = "temp.txt";
+            List<string> records = new List<string>();
+            records = (System.IO.File.ReadAllLines("file.txt")).ToList();
+            for(int i=0;i<records.Count;i++)
+            {
+                string[] fields = records[i].Split(',');
+                if (Int32.Parse(fields[0])==search)
+                {
+                    SaveInfo(Int32.Parse(fields[0]),editName,editAddress,editPhone,tempFile);
+                    Console.WriteLine("Done");
+                }
+                else
+                {
+                    SaveInfo(Int32.Parse(fields[0]), fields[1], fields[2], fields[3], tempFile);
+                }
+            }
+            File.Delete(path);
+            File.Move(tempFile, path);
         }
+        public void DeleteRecord(int search)
+        {
+            string path = "file.txt";
+            string tempFile = "temp.txt";
+            List<string> records = new List<string>();
+            records = (System.IO.File.ReadAllLines("file.txt")).ToList();
+            for (int i = 0; i < records.Count; i++)
+            {
+                string[] fields = records[i].Split(',');
+                if (Int32.Parse(fields[0]) == search)
+                {
+                    Console.WriteLine("Deleted");
+                }
+                else
+                {
+                    SaveInfo(Int32.Parse(fields[0]), fields[1], fields[2], fields[3], tempFile);
+                }
+            }
+            File.Delete(path);
+            File.Move(tempFile, path);
+        }
+
     }
 }

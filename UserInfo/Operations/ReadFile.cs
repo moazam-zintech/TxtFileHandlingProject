@@ -1,42 +1,17 @@
 ﻿using System.Text;
 using UserInfo.Interfaces;
-
 namespace UserInfo.Operations
 {
     public class ReadFile : UserInfoClass, IReadFile
     {
         public void GetAllInfo()
         {
-            GlobalPath globalPath = new GlobalPath();
-            string path = globalPath.GetPath();
-            // string path = @"D:\Rough Folder\UserInfo\UserInfo\Mytest.txt";
-            if (File.Exists(path) && !(File.ReadAllText(path) == ""))
+            List<string> records = new List<string>();
+            records = (System.IO.File.ReadAllLines("file.txt",Encoding.UTF8)).ToList();
+            for (int i = 0; i < records.Count; i++)
             {
-                using (var stream = File.Open(path, FileMode.Open))
-                {
-                    using (var br = new BinaryReader(stream, Encoding.UTF8))
-                    {
-                        Id = br.ReadInt32();
-                        Name = br.ReadString();
-                        Address = br.ReadString();
-                        Phone = br.ReadString();
-                    }
-                }
-            }
-            Console.WriteLine("Id: " + Id + "\nName:" + Name + "\nAddress: " + Address + "\nAddress: " + Phone);
-        }
-        public string ReadFileData()
-        {
-            GlobalPath globalPath = new GlobalPath();
-            string path = globalPath.GetPath();
-            if (File.Exists(path))
-            {
-                return File.ReadAllText(path, Encoding.UTF8);
-            }
-            else
-            {
-                Console.WriteLine("There is no file");
-                return "";
+                string[] strings = records[i].Split(",");
+                Console.WriteLine(strings[0]+" "+ strings[1]+ " " + strings[2]+ " " + strings[3]);
             }
         }
     }

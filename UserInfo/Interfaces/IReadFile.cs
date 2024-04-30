@@ -8,7 +8,6 @@ namespace UserInfo.Interfaces
 {
     public interface IReadFile
     {
-        public string ReadFileData();
         public void GetAllInfo();
     }
 }
